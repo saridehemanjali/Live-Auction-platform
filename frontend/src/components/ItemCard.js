@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Countdown from "./Countdown";
 import "./ItemCard.css";
 
-const ItemCard = ({ item, username, placeBid }) => {
-  const [timeLeft, setTimeLeft] = useState(
-    Math.max(0, item.endTime - Date.now())
-  );
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(Math.max(0, item.endTime - Date.now()));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [item.endTime]);
-
-  const formatTime = (ms) => {
-    const seconds = Math.floor(ms / 1000);
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m}:${s < 10 ? "0" + s : s}`;
-  };
-
-  const auctionEnded = timeLeft <= 0;
+const ItemCard = ({ item, username, placeBid, serverTime }) => {
+  const auctionEnded = Date.now() >= item.endTime;
   const isWinner = auctionEnded && item.highestBidder === username;
 
   return (
@@ -43,7 +26,8 @@ const ItemCard = ({ item, username, placeBid }) => {
       </p>
 
       <p>
-        Auction Ends In: {auctionEnded ? "Ended" : formatTime(timeLeft)}
+        Auction Ends In:{" "}
+        <Countdown endTime={item.endTime} serverTime={serverTime} />
       </p>
 
       {!auctionEnded && (

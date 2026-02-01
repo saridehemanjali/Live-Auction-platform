@@ -90,11 +90,13 @@ const [tempName, setTempName] = useState("");     // input typing
       <div className="grid">
         {items.map(item => (
           <ItemCard
-            key={item.id}
-            item={item}
-            username={username}
-            placeBid={placeBid}
-          />
+              key={item.id}
+              item={item}
+              username={username}
+              placeBid={placeBid}
+              serverTime={serverTime}
+            />
+
         ))}
       </div>
     </div>
