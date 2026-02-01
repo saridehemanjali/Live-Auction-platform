@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+.container {
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  background: #222;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card.winning {
+  animation: flashGreen 0.5s;
+}
+
+.card.outbid {
+  animation: flashRed 0.5s;
+}
+
+@keyframes flashGreen {
+  from { background: #2ecc71; }
+  to { background: #222; }
+}
+
+@keyframes flashRed {
+  from { background: #e74c3c; }
+  to { background: #222; }
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.win { background: green; }
+.lose { background: red; }
